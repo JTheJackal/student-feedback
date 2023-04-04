@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starblazor", "Starblazor.csproj", "{333FDA2E-6949-4A15-9158-E427AF6C80C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{333FDA2E-6949-4A15-9158-E427AF6C80C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{333FDA2E-6949-4A15-9158-E427AF6C80C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{333FDA2E-6949-4A15-9158-E427AF6C80C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{333FDA2E-6949-4A15-9158-E427AF6C80C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C4DA15C-4FC5-452B-B59E-F50AC94A00E4}
+	EndGlobalSection
+EndGlobal
