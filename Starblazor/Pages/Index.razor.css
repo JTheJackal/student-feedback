@@ -1,0 +1,11 @@
+﻿.badge-container {
+
+
+}
+
+.badge {
+
+    background-color: lightgray;
+    padding-bottom: 25%;
+    outline: solid 1px black;
+}
