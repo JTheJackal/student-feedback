@@ -1,13 +1,13 @@
 ﻿@page "/"
-@inject IJSRuntime jsRuntime
+@inject IJSRuntime JS
 
 <PageTitle>StarBlazor</PageTitle>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-xl-5">
             <div class="row">
-                <div class="col-12 col-md-12">
+                <div class="col-12 col-xl-12">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="studentName" placeholder="Forename Surname">
                         <label for="studentName">Student Name</label>
@@ -16,14 +16,14 @@
             </div>
 
             <div class="row">
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-xl-8">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="course" placeholder="Course Name">
                         <label for="course">Course Name</label>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-xl-4">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="result" aria-label="Result">
                             <option selected>Choose...</option>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="row">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-xl-4">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="review" aria-label="Review">
                             <option selected>Choose...</option>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-xl-8">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="date" placeholder="dd/mm/yyyy">
                         <label for="date">Date</label>
@@ -56,9 +56,9 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-1"></div>
+        <div class="col-12 col-xl-1"></div>
 
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-xl-5">
             
             <!-- Decoration or info -->
         </div>
@@ -72,17 +72,17 @@
 
     <!-- Unit 1 -->
     <div class="row">
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-xl-5">
             <div class="row">
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-xl-6">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="unit1Span" placeholder="Please enter the Unit Code or Title">
                         <label for="unit1Span">Unit Code/Title</label>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-xl-6">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="status1" aria-label="Status">
                             <option selected>Choose...</option>
@@ -97,7 +97,7 @@
 
             <div class="row">
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-xl-6">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="resolved1" aria-label="Element Resolved">
                             <option selected>Choose...</option>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-xl-6">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="remedial1" aria-label="Remedial Steps">
                             <option selected>Choose...</option>
@@ -132,20 +132,20 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-1"></div>
+        <div class="col-12 col-xl-1"></div>
 
         <!-- Unit 2 -->
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-xl-5">
             <div class="row">
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-xl-6">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="unit2Span" placeholder="Please enter the Unit Code or Title">
                         <label for="unit2Span">Unit Code/Title</label>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-xl-6">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="status2" aria-label="Status">
                             <option selected>Choose...</option>
@@ -160,7 +160,7 @@
 
             <div class="row">
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-xl-6">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="resolved2" aria-label="Element Resolved">
                             <option selected>Choose...</option>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-xl-6">
                     <div class="form-floating mb-3">
                         <select class="form-select" id="remedial2" aria-label="Remedial Steps">
                             <option selected>Choose...</option>
@@ -200,14 +200,14 @@
     <div class="row">
 
         <!-- Spider chart -->
-        <div class="col-12 col-md-5">
-            <canvas id="spider"></canvas>
+        <div class="col-12 col-xl-5" id="canvasHolder">
+            
         </div>
 
-        <div class="col-12 col-md-1"></div>
+        <div class="col-12 col-xl-1"></div>
 
         <!-- Badge selector -->
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-xl-5" id="badgeHolder">
             <div class="row">
                 <div class="col-4 badge">1</div>
                 <div class="col-4 badge">2</div>
