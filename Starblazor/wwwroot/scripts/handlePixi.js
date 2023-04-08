@@ -57,3 +57,17 @@ window.createCircle = () => {
 
     //app.stage.addChild(GRAPHICS);
 }
+
+window.createGraphOverlay = () => {
+
+    console.log("Creating graph overlay");
+
+    // Circle + line style 1
+
+    GRAPHICS.lineStyle(2, 0x000, 1);
+    GRAPHICS.beginFill(0x000, 0);
+    GRAPHICS.drawCircle(width/2, height/2, 250);
+    GRAPHICS.endFill();
+
+    app.stage.addChild(GRAPHICS);
+}

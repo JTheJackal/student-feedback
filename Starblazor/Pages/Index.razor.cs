@@ -24,6 +24,7 @@ namespace Starblazor.Pages
             }
 
             JSRuntime.InvokeVoidAsync("createCircle");
+            JSRuntime.InvokeVoidAsync("createGraphOverlay");
         }
     }
 }
