@@ -1,11 +1,34 @@
 ﻿.badge-container {
 
-
+    text-align: center;
 }
 
-.badge {
+.badge-row{
 
-    background-color: lightgray;
-    padding-bottom: 25%;
-    outline: solid 1px black;
+    display:inline-block;
+}
+
+.badge-image {
+
+    width: 32%;
+    max-width: 110px;
+    filter: saturate(0);
+    opacity: 0.3;
+    margin: 2px;
+    border-radius: 0;
+
+    transition: filter 2s, opacity 2s, border-radius 1s;
+}
+
+.badge-image:hover {
+
+    filter: saturate(1);
+    opacity: 1;
+    border-radius: 15px;
+}
+
+.badge-selected {
+
+    filter: saturate(1);
+    opacity: 1;
 }
