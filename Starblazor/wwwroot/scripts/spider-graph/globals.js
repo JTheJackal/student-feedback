@@ -7,7 +7,7 @@ const LABELANGLEOFFSET      = 225 * (Math.PI/180);
 const HEADINGANGLEOFFSET    = 90 * (Math.PI/180);
 const CIRCANGLEOFFSET       = 265 * (Math.PI/180);
 
-let app             = null;
+const APP           = null;
 let width           = null;
 let height          = null;
 let radius          = null;
@@ -29,3 +29,5 @@ let headingsText      = [
 
 let labelsColliders     = [];
 let headingsColliders   = [];
+
+let badges              = [];

@@ -6,7 +6,7 @@ window.setEnvironment = () => {
     height  = PERCENTAGE/100 * document.getElementById("canvasHolder").offsetWidth;
 };
 
-window.createPixi = () => {{ background: '#1099bb' }
+window.createPixi = () => {
 
     app = new PIXI.Application({
         width: width,
@@ -57,22 +57,26 @@ window.createGraphOverlay = () => {
         setTimeout(function(){
             
             circRadius  = background.width/circRadiusModifier;
+            
+            let tempShape   = new Circle(background.x, background.y, 0x000, 0, 1.5, 0xFFFFFF, 0.8);
+            tempShape.draw(circRadius * (i + 1), circRadius * (i + 1));
+            tempShape.makeSprite();
 
             // Create a graphic to use as a texture
-            const tempGraphics  = new PIXI.Graphics();
-            tempGraphics.lineStyle(1.5, 0xFFFFFF, 0.8);
-            tempGraphics.beginFill(0x000, 0);
-            tempGraphics.drawCircle(0, 0, circRadius * (i + 1), circRadius * (i + 1));
-            tempGraphics.endFill();
+            // const tempGraphics  = new PIXI.Graphics();
+            // tempGraphics.lineStyle(1.5, 0xFFFFFF, 0.8);
+            // tempGraphics.beginFill(0x000, 0);
+            // tempGraphics.drawCircle(0, 0, circRadius * (i + 1), circRadius * (i + 1));
+            // tempGraphics.endFill();
 
-            // Create the texture and apply to a new sprite
-            let texture = app.renderer.generateTexture(tempGraphics);
-            let circle  = new PIXI.Sprite(texture);
-            circle.x    = background.x;
-            circle.y    = background.y;
-            circle.anchor.set(0.5, 0.5);
+            // // Create the texture and apply to a new sprite
+            // let texture = app.renderer.generateTexture(tempGraphics);
+            // let circle  = new PIXI.Sprite(texture);
+            // circle.x    = background.x;
+            // circle.y    = background.y;
+            // circle.anchor.set(0.5, 0.5);
 
-            app.stage.addChild(circle);
+            // app.stage.addChild(circle);
 
             // Increase the modifier to increase the size of the next circles
             circRadiusModifier += 0.7;
@@ -90,6 +94,11 @@ window.createGraphOverlay = () => {
 
             position    = getPointOnCircle(positionX, positionY, angle + LABELANGLEOFFSET, radius - 15);
             
+            let tempShape   = new Circle(position.x, position.y, 0xFFFFFF, 1, 1, 0xFFFFFF, 1);
+            tempShape.draw(10, 10);
+            tempShape.makeSprite();
+
+            /*
             // Create sprites for circle perimeter
             const tempGraphics  = new PIXI.Graphics();
             tempGraphics.lineStyle(1, 0xFFFFFF, 1);
@@ -104,6 +113,7 @@ window.createGraphOverlay = () => {
             circle.anchor.set(0.5, 0.5);
 
             app.stage.addChild(circle);
+            */
         }, milliseconds * i);      
     }
 
@@ -180,8 +190,6 @@ window.createPerimeter = () => {
     
     const SEGMENTS      = 140;
 
-    let positionX       = width/2;
-    let positionY       = height/2;
     let arc             = 360/SEGMENTS;
     let position        = null;
     let milliseconds    = 10;
@@ -195,15 +203,19 @@ window.createPerimeter = () => {
             angle       = arc * (i + 1);
             angle       = angle * (Math.PI/180);
 
-            position    = getPointOnCircle(positionX, positionY, angle + CIRCANGLEOFFSET, radius + PERIMETEROFFSET);
+            position    = getPointOnCircle(background.x, background.y, angle + CIRCANGLEOFFSET, radius + PERIMETEROFFSET);
             
-            let circle  = createPerimeterCircle(position);
+            // Create a new perimeter circle
+            let tempShape   = new Circle(position.x, position.y, 0x000000, 1, 1, 0x000000, 1);
+            tempShape.draw(1, 1);
+            tempShape.makeSprite();
             
+            // If the newly created circle collides with a heading, remove it
             for(let j = 0; j < headingsColliders.length; j++){
 
-                if(checkCollision(circle, headingsColliders[j])){
+                if(checkCollision(tempShape.getSprite(), headingsColliders[j])){
 
-                    app.stage.removeChild(circle);
+                    app.stage.removeChild(tempShape.getSprite());
                 }
             }
 
@@ -228,36 +240,6 @@ let checkCollision = function(a, b)
   let ab = a.getBounds();
   let bb = b.getBounds();
   return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
-}
-
-let createPerimeterCircle = function(position){
-
-    // Create sprites for circle perimeter
-    const TEMPGFX       = new PIXI.Graphics();
-    const CIRCRADIUS    = 1;
-
-    let lineWidth       = 1;
-    let lineColour      = 0x000000;
-    let lineAlpha       = 1;
-
-    // Create the graphic to use as a texture for a sprite
-    TEMPGFX.lineStyle(lineWidth, lineColour, lineAlpha);
-    TEMPGFX.beginFill(lineColour, 1);
-    TEMPGFX.drawCircle(0, 0, CIRCRADIUS, CIRCRADIUS);
-    TEMPGFX.endFill();
-
-    let texture = app.renderer.generateTexture(TEMPGFX);
-    let circle  = new PIXI.Sprite(texture);
-
-    // Position the circle sprite to the given location
-    circle.x    = position.x;
-    circle.y    = position.y;
-    circle.anchor.set(0.5, 0.5);
-
-    // Add circle to the stage
-    app.stage.addChild(circle);
-
-    return circle;
 }
 
 let createText = function(text, size, positionOffset, rotation, rotationOffset, multiplier){
@@ -286,6 +268,11 @@ let createText = function(text, size, positionOffset, rotation, rotationOffset, 
 
 let createCollider = function(object, padding, collection){
 
+    let tempShape   = new Rectangle(object.x, object.y, 0xFFFFFF, 0, 0, 0xFFFFFF, 0);
+    tempShape.draw(object.width + padding, object.height + padding);
+    tempShape.makeSprite();
+    tempShape.rotateSprite(object.angle);
+    /*
     // Create sprites to sit over the top of the text to check collision
     const TEMPGFX  = new PIXI.Graphics();
     TEMPGFX.beginFill(0xFFFFFF);
@@ -298,8 +285,11 @@ let createCollider = function(object, padding, collection){
     rectangle.y     = object.y;
     rectangle.angle = object.angle;
     rectangle.anchor.set(0.5, 0.5);
+    */
 
-    collection.push(rectangle);
+    //collection.push(rectangle);
+    collection.push(tempShape.getSprite());
 
-    return rectangle;
+    //return rectangle;
+    return tempShape.getSprite();
 }

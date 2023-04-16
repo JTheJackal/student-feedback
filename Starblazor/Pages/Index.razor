@@ -200,8 +200,7 @@
                 <div class="col-12 col-xl-5 mx-auto">
                     <div class="row">
                         <!-- Spider chart -->
-                        <div class="col-12 mb-3" id="canvasHolder">
-                        </div>
+                        <div class="col-12 mb-3" id="canvasHolder"></div>
                     </div>
 
                     <div class="row">
@@ -209,23 +208,30 @@
                         <div class="col-12 badge-container mx-auto" id="badgeHolder">
                             <div class="row">
                                 <div class="col-12 badge-row">
-                                    <img src="../images/badges/in-proportion.png" data-badge="in-proportion" onclick="handleBadge(this)" class="badge-image" />
-                                    <img src="../images/badges/foreshortening.png" data-badge="foreshortening" onclick="handleBadge(this)" class="badge-image" />
-                                    <img src="../images/badges/aligned.png" data-badge="aligned" onclick="handleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/in-proportion.png" data-badge="in-proportion" onclick="toggleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/foreshortening.png" data-badge="foreshortening" onclick="toggleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/aligned.png" data-badge="aligned" onclick="toggleBadge(this)" class="badge-image" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 badge-row">
-                                    <img src="../images/badges/gesture.png" data-badge="gesture" onclick="handleBadge(this)" class="badge-image" />
-                                    <img src="../images/badges/experimental.png" data-badge="experimental" onclick="handleBadge(this)" class="badge-image" />
-                                    <img src="../images/badges/engaging.png" data-badge="engaging" onclick="handleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/gesture.png" data-badge="gesture" onclick="toggleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/experimental.png" data-badge="experimental" onclick="toggleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/engaging.png" data-badge="engaging" onclick="toggleBadge(this)" class="badge-image" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 badge-row">
-                                    <img src="../images/badges/ambitious.png" data-badge="ambitious" onclick="handleBadge(this)" class="badge-image" />
-                                    <img src="../images/badges/media-control.png" data-badge="media-control" onclick="handleBadge(this)" class="badge-image" />
-                                    <img src="../images/badges/realised.png" data-badge="realised" onclick="handleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/ambitious.png" data-badge="ambitious" onclick="toggleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/media-control.png" data-badge="media-control" onclick="toggleBadge(this)" class="badge-image" />
+                                    <img src="../images/badges/realised.png" data-badge="realised" onclick="toggleBadge(this)" class="badge-image" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 badge-row">
+                                    <div class="d-grid">
+                                        <button class="btn btn-secondary" type="button" onclick="chooseAll()">Select/Deselect All</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
