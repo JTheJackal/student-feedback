@@ -26,9 +26,11 @@ namespace Starblazor.Pages
             JSRuntime.InvokeVoidAsync("createBackground");
             JSRuntime.InvokeVoidAsync("createLabels");
             JSRuntime.InvokeVoidAsync("createHeadings");
-
             JSRuntime.InvokeVoidAsync("createPerimeter");
+            JSRuntime.InvokeVoidAsync("setInteractions");
+
             JSRuntime.InvokeVoidAsync("initBadges");
+            
         }
     }
 }

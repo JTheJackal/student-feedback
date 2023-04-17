@@ -29,5 +29,6 @@ let headingsText      = [
 
 let labelsColliders     = [];
 let headingsColliders   = [];
+let markers             = [];
 
 let badges              = [];

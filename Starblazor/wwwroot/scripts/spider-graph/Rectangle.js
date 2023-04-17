@@ -8,7 +8,7 @@ class Rectangle extends Shape {
     draw(width, height) {
 
         // Create sprites to sit over the top of the text to check collision
-        this.gfx.beginFill(this.fillColour);
+        this.gfx.beginFill(this.fillColour, this.fillOpacity);
         this.gfx.drawRect(0, 0, width, height);
         this.gfx.endFill();
     }

@@ -29,6 +29,9 @@ window.createBackground = () => {
     background.anchor.set(0.5);
     background.x        = width / 2;
     background.y        = height / 2;
+    background.interactive = true;
+    background.cursor = 'pointer';
+
     app.stage.addChild(background);
 
     radius = background.width/2;
@@ -62,22 +65,6 @@ window.createGraphOverlay = () => {
             tempShape.draw(circRadius * (i + 1), circRadius * (i + 1));
             tempShape.makeSprite();
 
-            // Create a graphic to use as a texture
-            // const tempGraphics  = new PIXI.Graphics();
-            // tempGraphics.lineStyle(1.5, 0xFFFFFF, 0.8);
-            // tempGraphics.beginFill(0x000, 0);
-            // tempGraphics.drawCircle(0, 0, circRadius * (i + 1), circRadius * (i + 1));
-            // tempGraphics.endFill();
-
-            // // Create the texture and apply to a new sprite
-            // let texture = app.renderer.generateTexture(tempGraphics);
-            // let circle  = new PIXI.Sprite(texture);
-            // circle.x    = background.x;
-            // circle.y    = background.y;
-            // circle.anchor.set(0.5, 0.5);
-
-            // app.stage.addChild(circle);
-
             // Increase the modifier to increase the size of the next circles
             circRadiusModifier += 0.7;
 
@@ -98,22 +85,6 @@ window.createGraphOverlay = () => {
             tempShape.draw(10, 10);
             tempShape.makeSprite();
 
-            /*
-            // Create sprites for circle perimeter
-            const tempGraphics  = new PIXI.Graphics();
-            tempGraphics.lineStyle(1, 0xFFFFFF, 1);
-            tempGraphics.beginFill(0xFFFFFF, 1);
-            tempGraphics.drawCircle(0, 0, 10, 10);
-            tempGraphics.endFill();
-
-            let texture = app.renderer.generateTexture(tempGraphics);
-            circle      = new PIXI.Sprite(texture);
-            circle.x    = position.x;
-            circle.y    = position.y;
-            circle.anchor.set(0.5, 0.5);
-
-            app.stage.addChild(circle);
-            */
         }, milliseconds * i);      
     }
 
@@ -127,19 +98,11 @@ window.createGraphOverlay = () => {
 
             position    = getPointOnCircle(positionX, positionY, angle + LABELANGLEOFFSET, radius - 15);
             
-            // Create sprites for circle perimeter
-            const TEMPGFX  = new PIXI.Graphics();
-            TEMPGFX.lineStyle(1, 0xffffff)
-            TEMPGFX.moveTo(background.x, background.y)
-            TEMPGFX.lineTo(position.x, position.y);
-            app.stage.addChild(TEMPGFX);
-
+            let tempShape   = new Line(background.x, background.y, 1, 0xFFFFFF, 1);
+            tempShape.draw(background.x, background.y, position.x, position.y);
+            tempShape.renderGFX();
 
         }, milliseconds * i);
-
-        if(i === 1){
-            //break;
-        }
     }
 }
 
@@ -150,16 +113,21 @@ window.createHeadings = () => {
     const SEGMENTS          = 2;
     const HEADINGPADDING    = 5;
     let arc                 = 360/SEGMENTS;
-    let text                = null;
+    let size                = 18;
+    let collider            = null;
 
 
     for (let i = 0; i < headingsText.length; i++) {
 
-        text        = createText(headingsText[i], 18, PERIMETEROFFSET, arc, HEADINGANGLEOFFSET, i);
-        collider    = createCollider(text, HEADINGPADDING, headingsColliders);
+
+        // Create a label object
+        let heading     = createText(headingsText[i], size, PERIMETEROFFSET, arc, HEADINGANGLEOFFSET, i);
+
+        // Create collider for the heading
+        collider    = createCollider(heading.getObject(), HEADINGPADDING, headingsColliders);
 
         app.stage.addChild(collider);
-        app.stage.addChild(text);
+        heading.render();
     }
 }
 
@@ -170,17 +138,20 @@ window.createLabels = () => {
     const SEGMENTS      = 8;
     const LABELPADDING  = 0;
     let arc             = 360/SEGMENTS;
-    let text            = null;
     let collider        = null;
+    let size            = 12;
 
 
     for (let i = 0; i < labelsText.length; i++) {
+        
+        // Create a label object
+        let label       = createText(labelsText[i], size, LABELSOFFSET, arc, LABELANGLEOFFSET, i);
 
-        text        = createText(labelsText[i], 12, LABELSOFFSET, arc, LABELANGLEOFFSET, i);
-        collider    = createCollider(text, LABELPADDING, labelsColliders);
+        // Create a collision object for the label
+        collider    = createCollider(label.getObject(), LABELPADDING, labelsColliders);
 
         app.stage.addChild(collider);
-        app.stage.addChild(text);
+        label.render();
     }
 }
 
@@ -227,6 +198,15 @@ window.createPerimeter = () => {
     }
 }
 
+window.setInteractions = () => {
+
+    // Allow background to be clicked on
+    background.on('pointertap', (event) => {
+        
+        placeMarker(event, markers);
+    });
+}
+
 let getPointOnCircle = function(startX, startY, angle, radius){
 
     let posX = startX + Math.cos(angle) * radius;
@@ -244,52 +224,37 @@ let checkCollision = function(a, b)
 
 let createText = function(text, size, positionOffset, rotation, rotationOffset, multiplier){
 
-    let style   = new PIXI.TextStyle({
-        fontFamily: 'Arial',
-        fontSize: size
-    });
-
-    let positionX   = width/2;
-    let positionY   = height/2;
-
-    let textObject  = new PIXI.Text(text, style);
     let angle       = rotation * (multiplier + 1);
     angle           = angle * (Math.PI/180);
 
-    let position    = getPointOnCircle(positionX, positionY, angle + rotationOffset, radius + positionOffset);
+    let position    = getPointOnCircle(background.x, background.y, angle + rotationOffset, radius + positionOffset);
 
-    textObject.x      = position.x;
-    textObject.y      = position.y;
-    textObject.angle  = rotation * multiplier;
-    textObject.anchor.set(0.5, 0.5);
+    let tempText = new Label(text, 'Arial', size);
+    tempText.makeText(position.x, position.y);
+    tempText.rotate(rotation * multiplier);
 
-    return textObject;
+    return tempText;
 }
 
 let createCollider = function(object, padding, collection){
 
-    let tempShape   = new Rectangle(object.x, object.y, 0xFFFFFF, 0, 0, 0xFFFFFF, 0);
+    let tempShape   = new Rectangle(object.x, object.y, 0xFFFFFF, 1, 0, 0xFFFFFF, 0);
     tempShape.draw(object.width + padding, object.height + padding);
     tempShape.makeSprite();
     tempShape.rotateSprite(object.angle);
-    /*
-    // Create sprites to sit over the top of the text to check collision
-    const TEMPGFX  = new PIXI.Graphics();
-    TEMPGFX.beginFill(0xFFFFFF);
-    TEMPGFX.drawRect(0, 0, object.width + padding, object.height + padding);
-    TEMPGFX.endFill();
 
-    const TEXTURE   = app.renderer.generateTexture(TEMPGFX);
-    let rectangle   = new PIXI.Sprite(TEXTURE);
-    rectangle.x     = object.x;
-    rectangle.y     = object.y;
-    rectangle.angle = object.angle;
-    rectangle.anchor.set(0.5, 0.5);
-    */
-
-    //collection.push(rectangle);
     collection.push(tempShape.getSprite());
 
-    //return rectangle;
+    //return collider;
     return tempShape.getSprite();
+}
+
+let placeMarker = function(event, collection){
+
+    let tempMarker = new Marker(event.data.global.x, event.data.global.y, 0x000000, 1, 1, 0x000000, 1);
+    tempMarker.draw(10, 10);
+    tempMarker.makeSprite();
+    tempMarker.setInteractive();
+    collection.push(tempMarker);
+    //console.log(event.data.global);
 }

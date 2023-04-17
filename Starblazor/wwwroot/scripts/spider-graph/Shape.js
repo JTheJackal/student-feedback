@@ -11,6 +11,7 @@ class Shape {
         this.lineOpacity    = lineOpacity;
         this.gfx            = new PIXI.Graphics();
         this.sprite         = null;
+        this.texture        = null;
     }
 
     draw() {
@@ -20,15 +21,13 @@ class Shape {
 
     makeSprite() {
 
-        let texture     = app.renderer.generateTexture(this.gfx);
-        this.sprite     = new PIXI.Sprite(texture);
+        this.texture     = app.renderer.generateTexture(this.gfx);
+        this.sprite     = new PIXI.Sprite(this.texture);
         this.sprite.x   = this.x;
         this.sprite.y   = this.y;
         this.sprite.anchor.set(0.5, 0.5);
 
         app.stage.addChild(this.sprite);
-
-        console.log(this.x, this.y);
     }
 
     rotateSprite(rotation) {
@@ -39,5 +38,15 @@ class Shape {
     getSprite() {
 
         return this.sprite;
+    }
+
+    renderGFX() {
+
+        app.stage.addChild(this.gfx);
+    }
+
+    renderSprite() {
+
+        app.stage.addChild(this.sprite);
     }
 }
