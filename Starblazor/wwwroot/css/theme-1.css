@@ -1,5 +1,59 @@
+body {
+
+    background-color: #fff;
+}
+
 .section {
 
     background-color: #4a69bd;
     border-radius: 5px;
+    padding-bottom: 50px;
+}
+
+.title-row {
+
+    margin-bottom: 25px;
+}
+
+/* .title {
+
+    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+} */
+
+.title {
+
+    font-family: 'Oxygen', sans-serif;
+    font-size:26px; 
+    font-weight:700;  
+    letter-spacing:1px; 
+    text-transform:uppercase; 
+    width:160px; 
+    text-align:center; 
+    margin:auto; 
+    white-space:nowrap; 
+    padding-bottom:13px;
+}
+
+.title:before {
+
+    background-color: #4a69bd;
+    content: '';
+    display: block;
+    height: 3px;
+    width: 75px;
+    margin-bottom: 5px;
+}
+
+.title:after {
+
+    background-color: #4a69bd;
+    content: '';
+    display: block;
+    position:absolute; 
+    right:0; 
+    bottom:0;
+    height: 3px;
+    width: 75px;
+    margin-bottom: 0.25em;
 }
