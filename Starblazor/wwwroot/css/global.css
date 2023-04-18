@@ -2,3 +2,13 @@ html {
 
     background-color: #fff;
 }
+
+.black-text {
+
+    color: black !important;
+}
+
+.right-text {
+
+    text-align: right !important;
+}
