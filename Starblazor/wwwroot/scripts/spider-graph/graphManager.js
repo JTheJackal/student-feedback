@@ -131,6 +131,29 @@ window.createHeadings = () => {
     }
 }
 
+window.createAptitudes = () => {
+
+    const APTANGLEOFFSET    = 337 * (Math.PI/180);
+    let moveAmount          = 11/100 * background.width;
+    let aptOffset           = -(background.width/2) + moveAmount;
+    let arc                 = 360/1;
+    let size                = 9;
+
+
+    for (let i = 0; i < labelsText.length; i++) {
+        
+        // Create a label object
+        let label       = createText(aptitudeText[i], size, aptOffset, arc, APTANGLEOFFSET, 0);
+
+        // Apply our own rotation
+        label.rotate(75);
+        label.render();
+
+        // Move the next label further away from center
+        aptOffset += moveAmount;
+    }
+}
+
 window.createLabels = () => {
 
     console.log("Creating labels");
@@ -251,8 +274,8 @@ let createCollider = function(object, padding, collection){
 
 let placeMarker = function(event, collection){
 
-    let tempMarker = new Marker(event.data.global.x, event.data.global.y, 0x000000, 1, 1, 0x000000, 1);
-    tempMarker.draw(10, 10);
+    let tempMarker = new Marker(event.data.global.x, event.data.global.y, 0x218C74, 1, 1, 0x218C74, 1);
+    tempMarker.draw(6, 6);
     tempMarker.makeSprite();
     tempMarker.setInteractive();
     collection.push(tempMarker);

@@ -7,7 +7,7 @@ const LABELANGLEOFFSET      = 225 * (Math.PI/180);
 const HEADINGANGLEOFFSET    = 90 * (Math.PI/180);
 const CIRCANGLEOFFSET       = 265 * (Math.PI/180);
 
-const APP           = null;
+let app             = null;
 let width           = null;
 let height          = null;
 let radius          = null;
@@ -22,6 +22,13 @@ let labelsText      = [
     "Realisation",
     "Colour",
     "Source work"];
+
+let aptitudeText        = [
+    "Limited",
+    "Developing",
+    "Confident",
+    "Assured"
+]
 
 let headingsText      = [
     "Life Drawings",
