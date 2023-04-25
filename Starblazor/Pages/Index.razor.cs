@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Starblazor.Shared;
+using Starblazor.Shared.Model;
 
 namespace Starblazor.Pages
 {
@@ -8,12 +10,18 @@ namespace Starblazor.Pages
 
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
+
+        [Inject]
+        public NavigationManager navManager { get; set; }
+
+        [Inject]
+        public ReportState reportState { get; set; }
+
         
         public async Task CreatePixi()
         {
             await JSRuntime.InvokeVoidAsync("createPixi");
         }
-
 
         protected override void OnAfterRender(bool firstRender)
         {
@@ -32,6 +40,24 @@ namespace Starblazor.Pages
 
             JSRuntime.InvokeVoidAsync("initBadges");
             
+        }
+
+        private void GenerateReport()
+        {
+
+            // Subscript to the event
+            reportState.OnStateChange += StateHasChanged;
+
+            ReportModel report = new ReportModel{
+                name = "joshua"
+
+                };
+
+            reportState.SetValue(report);
+
+            navManager.NavigateTo("/report");
+
+            reportState.OnStateChange -= StateHasChanged;
         }
     }
 }
