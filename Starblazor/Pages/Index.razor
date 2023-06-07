@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-12 col-xl-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="studentName" placeholder="Forename Surname">
+                                        <input @bind="studentName" type="text" class="form-control" id="studentName" placeholder="Forename Surname">
                                         <label for="studentName">Student Name</label>
                                     </div>
                                 </div>
@@ -38,15 +38,15 @@
                             <div class="row">
                                 <div class="col-12 col-xl-8">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="course" placeholder="Course Name">
+                                        <input @bind="course" type=" text" class="form-control" id="course" placeholder="Course Name">
                                         <label for="course">Course Name</label>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-xl-4">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="result" aria-label="Result">
-                                            <option selected>Choose...</option>
+                                        <select @bind="result" class="form-select" id="result" aria-label="Result">
+                                            <option value="none" selected>Choose...</option>
                                             <option value="pass">Pass</option>
                                             <option value="fail">Fail</option>
                                         </select>
@@ -58,8 +58,8 @@
                             <div class="row">
                                 <div class="col-12 col-xl-4">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="review" aria-label="Review">
-                                            <option selected>Choose...</option>
+                                        <select @bind="review" class="form-select" id="review" aria-label="Review">
+                                            <option value="none" selected>Choose...</option>
                                             <option value="review1">Review 1</option>
                                             <option value="review2">Review 2</option>
                                         </select>
@@ -69,7 +69,7 @@
 
                                 <div class="col-12 col-xl-8">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="date" placeholder="dd/mm/yyyy">
+                                        <input @bind="date" type="text" class="form-control" id="date" placeholder="dd/mm/yyyy">
                                         <label for="date">Date</label>
                                     </div>
                                 </div>
@@ -94,15 +94,15 @@
                             <div class="row">
                                 <div class="col-12 col-xl-6">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="unit1Span" placeholder="Please enter the Unit Code or Title">
+                                        <input @bind="unit1Code" type="text" class="form-control" id="unit1Span" placeholder="Please enter the Unit Code or Title">
                                         <label for="unit1Span">Unit Code/Title</label>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-xl-6">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="status1" aria-label="Status">
-                                            <option selected>Choose...</option>
+                                        <select @bind="status1" class="form-select" id="status1" aria-label="Status">
+                                            <option value="none" selected>Choose...</option>
                                             <option value="success">Successfully Completed</option>
                                             <option value="partial">Partially Completed</option>
                                             <option value="incomplete">Incomplete</option>
@@ -116,8 +116,8 @@
 
                                 <div class="col-12 col-xl-6">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="resolved1" aria-label="Element Resolved">
-                                            <option selected>Choose...</option>
+                                        <select @bind="element1Resolved" class="form-select" id="resolved1" aria-label="Element Resolved">
+                                            <option value="none" selected>Choose...</option>
                                             <option value="yes">Yes</option>
                                             <option value="no">No</option>
                                         </select>
@@ -127,8 +127,8 @@
 
                                 <div class="col-12 col-xl-6">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="remedial1" aria-label="Remedial Steps">
-                                            <option selected>Choose...</option>
+                                        <select @bind="remedial1Required" class="form-select" id="remedial1" aria-label="Remedial Steps">
+                                            <option value="none" selected>Choose...</option>
                                             <option value="yes">Yes</option>
                                             <option value="no">No</option>
                                         </select>
@@ -142,7 +142,7 @@
                                 <div class="col-12">
 
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" placeholder="Remedial Actions" id="remedialActions1"></textarea>
+                                        <textarea @bind="remedial1Actions" class="form-control" placeholder="Remedial Actions" id="remedialActions1"></textarea>
                                         <label for="remedialActions1">Remedial Actions</label>
                                     </div>
                                 </div>
@@ -167,15 +167,15 @@
                             <div class="row">
                                 <div class="col-12 col-xl-6">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="unit2Span" placeholder="Please enter the Unit Code or Title">
+                                        <input @bind="unit2Code" type="text" class="form-control" id="unit2Span" placeholder="Please enter the Unit Code or Title">
                                         <label for="unit2Span">Unit Code/Title</label>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-xl-6">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="status2" aria-label="Status">
-                                            <option selected>Choose...</option>
+                                        <select @bind="status2" class="form-select" id="status2" aria-label="Status">
+                                            <option value="none" selected>Choose...</option>
                                             <option value="success">Successfully Completed</option>
                                             <option value="partial">Partially Completed</option>
                                             <option value="incomplete">Incomplete</option>
@@ -189,8 +189,8 @@
 
                                 <div class="col-12 col-xl-6">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="resolved2" aria-label="Element Resolved">
-                                            <option selected>Choose...</option>
+                                        <select @bind="element2Resolved" class="form-select" id="resolved2" aria-label="Element Resolved">
+                                            <option value="none" selected>Choose...</option>
                                             <option value="yes">Yes</option>
                                             <option value="no">No</option>
                                         </select>
@@ -200,8 +200,8 @@
 
                                 <div class="col-12 col-xl-6">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="remedial2" aria-label="Remedial Steps">
-                                            <option selected>Choose...</option>
+                                        <select @bind="remedial2Required" class="form-select" id="remedial2" aria-label="Remedial Steps">
+                                            <option value="none" selected>Choose...</option>
                                             <option value="yes">Yes</option>
                                             <option value="no">No</option>
                                         </select>
@@ -215,7 +215,7 @@
                                 <div class="col-12">
 
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" placeholder="Remedial Actions" id="remedialActions2"></textarea>
+                                        <textarea @bind="remedial2Actions" class="form-control" placeholder="Remedial Actions" id="remedialActions2"></textarea>
                                         <label for="remedialActions2">Remedial Actions</label>
                                     </div>
                                 </div>

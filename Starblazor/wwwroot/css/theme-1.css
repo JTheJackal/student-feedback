@@ -75,3 +75,62 @@ body {
     width: 75px;
     margin-bottom: 0.25em;
 }
+
+.cell-parent {
+
+    display: flex;
+}
+
+.cell {
+
+    flex-wrap: wrap;
+    display: flex;
+    border: dashed 1px #333;
+    flex: 1;
+    align-content: center;
+}
+
+.cell-slim {
+
+    flex-wrap: wrap;
+    display: flex;
+    border: dashed 1px #333;
+    flex: 0.3;
+    align-content: center;
+}
+
+.report-item {
+
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+    padding: 15px 0;
+}
+
+.report-value {
+
+    font-size: 1em;
+    font-weight: 300;
+    margin: 0;
+    padding: 15px 0;
+}
+
+.no-marg {
+
+    margin: 0;
+}
+
+.no-pad {
+
+    padding: 0;
+}
+
+.flex-12 {
+
+    flex: 1.2;
+}
+
+.flex-01 {
+
+    flex: 0.1;
+}

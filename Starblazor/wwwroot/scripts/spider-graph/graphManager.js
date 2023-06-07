@@ -230,6 +230,22 @@ window.setInteractions = () => {
     });
 }
 
+window.screenshotGraph = () => {
+
+    app.render();
+    const imageUrl = app.renderer.plugins.extract.base64().then(function (result) {
+
+        console.log(result);
+        let link = document.createElement("a");
+        link.href = result;
+        link.download = "picture.png";
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+    });
+}
+
 let getPointOnCircle = function(startX, startY, angle, radius){
 
     let posX = startX + Math.cos(angle) * radius;
