@@ -1,0 +1,17 @@
+.graph-output {
+
+    text-align: center;
+}
+
+.report-badge-image {
+
+    width: 32%;
+    margin: 0;
+    border-radius: 0;
+}
+
+.badge-intro {
+
+    font-size: 1.1em;
+    text-align: center;
+}

@@ -5,8 +5,9 @@ const LABELSOFFSET          = 10;
 const PERIMETEROFFSET       = 40;
 const LABELANGLEOFFSET      = 225 * (Math.PI/180);
 const HEADINGANGLEOFFSET    = 90 * (Math.PI/180);
-const CIRCANGLEOFFSET       = 265 * (Math.PI/180);
+const CIRCANGLEOFFSET       = 265 * (Math.PI / 180);
 
+let base64          = "";
 let app             = null;
 let width           = null;
 let height          = null;
@@ -38,4 +39,4 @@ let labelsColliders     = [];
 let headingsColliders   = [];
 let markers             = [];
 
-let badges              = [];
+let badges = [];

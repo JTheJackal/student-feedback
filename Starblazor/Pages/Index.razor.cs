@@ -64,7 +64,7 @@ namespace Starblazor.Pages
 
             JSRuntime.InvokeVoidAsync("screenshotGraph");
 
-            /*
+
             var checkmark       = "⬤";
             var status1Check    = string.Empty;
             var status2Check    = string.Empty;
@@ -112,7 +112,15 @@ namespace Starblazor.Pages
             navManager.NavigateTo("/report");
 
             reportState.OnStateChange -= StateHasChanged;
-            */
+          
         }
+
+        /*
+        [JSInvokable]
+        public void OutputScreenshot()
+        {
+            JSRuntime.InvokeVoidAsync("outputScreenshot");
+        }
+        */
     }
 }

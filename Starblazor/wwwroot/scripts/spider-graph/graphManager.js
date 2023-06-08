@@ -233,17 +233,20 @@ window.setInteractions = () => {
 window.screenshotGraph = () => {
 
     app.render();
-    const imageUrl = app.renderer.plugins.extract.base64().then(function (result) {
+    const imageUrl = app.renderer.plugins.extract.base64(null, null, 1, null).then(function (result) {
 
-        console.log(result);
-        let link = document.createElement("a");
-        link.href = result;
-        link.download = "picture.png";
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.click();
-        link.parentNode.removeChild(link);
+        // Store globally to be reused later
+        base64 = result;
+
+        outputScreenshot();
     });
+}
+
+window.outputScreenshot = () => {
+
+    let img = document.createElement('img');
+    img.src = base64;
+    document.getElementById('graphOutput').appendChild(img);
 }
 
 let getPointOnCircle = function(startX, startY, angle, radius){
@@ -256,9 +259,9 @@ let getPointOnCircle = function(startX, startY, angle, radius){
 
 let checkCollision = function(a, b)
 {
-  let ab = a.getBounds();
-  let bb = b.getBounds();
-  return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
+    let ab = a.getBounds();
+    let bb = b.getBounds();
+    return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
 }
 
 let createText = function(text, size, positionOffset, rotation, rotationOffset, multiplier){

@@ -33,6 +33,36 @@ body {
     margin-bottom: 25px;
 }
 
+.badge-container {
+    text-align: center;
+}
+
+.badge-row {
+    display: inline-block;
+}
+
+.badge-image {
+    width: 32%;
+    max-width: 110px;
+    filter: saturate(0);
+    opacity: 0.3;
+    margin: 0;
+    border-radius: 0;
+    transition: filter 2s, opacity 2s, border-radius 1s;
+}
+
+    .badge-image:hover {
+        filter: saturate(1);
+        opacity: 1;
+        border-radius: 15px;
+    }
+
+.badge-selected {
+    filter: saturate(1);
+    opacity: 1;
+}
+
+
 /* .title {
 
     text-align: center;
@@ -113,6 +143,11 @@ body {
     font-weight: 300;
     margin: 0;
     padding: 15px 0;
+}
+
+.graph-output {
+
+    padding-top: 30px;
 }
 
 .no-marg {
